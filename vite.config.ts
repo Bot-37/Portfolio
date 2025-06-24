@@ -11,14 +11,17 @@ export default defineConfig(({ mode }) => ({
     },
     plugins: [
         react(),
-        mode === 'development' &&
-        componentTagger(),
+                                           mode === 'development' && componentTagger(),
     ].filter(Boolean),
-    resolve: {
-      alias: {
-        "@": path.resolve(__dirname, "./src"),
 
-    },
+                                           resolve: {
+                                               alias: {
+                                                   "@": path.resolve(__dirname, "./src"),
+                                               },
+                                           },
 
-    },
+                                           build: {
+                                               outDir: "dist", // Vercel expects this (default is fine, but we declare it explicitly)
+emptyOutDir: true,
+                                           },
 }));
