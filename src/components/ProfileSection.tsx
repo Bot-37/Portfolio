@@ -66,7 +66,7 @@ const ProfileSection = () => {
         {/* Actual Profile Image */}
         <div className="absolute inset-4 rounded-full overflow-hidden">
         <img
-        src="/src/Images/profile.png"
+        src="/Images/profile.png"
         alt="Fahad Profile"
         className="w-full h-full object-cover"
         />
