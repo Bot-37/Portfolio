@@ -1,0 +1,425 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #000;
+    color: #fff;
+    font-family: 'Courier New', monospace;
+    overflow-x: hidden;
+}
+
+/* Terminal Styles */
+.terminal-window {
+    background: rgba(0, 0, 0, 0.9);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    border-radius: 8px;
+    position: relative;
+}
+
+.terminal-header {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid rgba(34, 197, 94, 0.2);
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.terminal-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.terminal-button {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.terminal-red { background: #ff5f56; }
+.terminal-yellow { background: #ffbd2e; }
+.terminal-green { background: #27ca3f; }
+
+.terminal-content {
+    padding: 1rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+.terminal-prompt {
+    color: #22c55e;
+    margin-right: 0.5rem;
+}
+
+.terminal-input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-family: inherit;
+    font-size: inherit;
+    width: 100%;
+}
+
+.typing-cursor {
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+/* Holographic Effects */
+.hologram {
+    position: relative;
+    background: linear-gradient(45deg, rgba(34, 197, 94, 0.1), rgba(59, 130, 246, 0.1));
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.hologram::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #22c55e, #3b82f6, #22c55e);
+    border-radius: inherit;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.hologram:hover::before {
+    opacity: 0.3;
+}
+
+/* Weapon Loadout Styles */
+.weapon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+    padding: 2rem;
+}
+
+.weapon-slot {
+    position: relative;
+    aspect-ratio: 1;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(20, 20, 20, 0.9));
+    border: 2px solid rgba(34, 197, 94, 0.3);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.weapon-slot:hover {
+    border-color: #22c55e;
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
+    transform: translateY(-5px);
+}
+
+.weapon-slot.selected {
+    border-color: #3b82f6;
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.8);
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(34, 197, 94, 0.1));
+}
+
+.weapon-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.weapon-name {
+    font-size: 0.75rem;
+    color: #22c55e;
+    text-align: center;
+    font-weight: bold;
+}
+
+.weapon-level {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    font-size: 0.625rem;
+    color: #3b82f6;
+    background: rgba(59, 130, 246, 0.2);
+    padding: 0.25rem;
+    border-radius: 4px;
+}
+
+/* War Table Styles */
+.war-table {
+    position: relative;
+    background: radial-gradient(circle at center, rgba(34, 197, 94, 0.1), rgba(0, 0, 0, 0.9));
+    border: 2px solid rgba(34, 197, 94, 0.3);
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 2rem 0;
+    overflow: hidden;
+}
+
+.war-table::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+    linear-gradient(90deg, transparent 49%, rgba(34, 197, 94, 0.1) 50%, transparent 51%),
+    linear-gradient(0deg, transparent 49%, rgba(34, 197, 94, 0.1) 50%, transparent 51%);
+    background-size: 40px 40px;
+    pointer-events: none;
+    opacity: 0.3;
+}
+
+.war-table-content {
+    position: relative;
+    z-index: 1;
+}
+
+.holographic-display {
+    background: rgba(34, 197, 94, 0.05);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    border-radius: 8px;
+    padding: 1.5rem;
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+.holographic-display::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(34, 197, 94, 0.3), transparent);
+    animation: scan 3s linear infinite;
+}
+
+@keyframes scan {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* Quantum Button Effects */
+.quantum-button {
+    position: relative;
+    background: linear-gradient(45deg, rgba(34, 197, 94, 0.1), rgba(59, 130, 246, 0.1));
+    border: 1px solid rgba(34, 197, 94, 0.5);
+    color: #22c55e;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-family: 'Courier New', monospace;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.quantum-button:hover {
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
+    transform: translateY(-2px);
+}
+
+.quantum-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.quantum-button:hover::before {
+    left: 100%;
+}
+
+/* Glitch Effects */
+.glitch {
+    position: relative;
+    animation: glitch 2s infinite;
+}
+
+@keyframes glitch {
+    0%, 100% { transform: translate(0); }
+    10% { transform: translate(-2px, -2px); }
+    20% { transform: translate(2px, 2px); }
+    30% { transform: translate(-2px, 2px); }
+    40% { transform: translate(2px, -2px); }
+    50% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    70% { transform: translate(-2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+    90% { transform: translate(-2px, -2px); }
+}
+
+/* Data Stream Effects */
+.data-stream {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.1;
+}
+
+.data-stream::before {
+    content: '01001001001010010101001010101010101001010100101010101010101010';
+    position: absolute;
+    color: #22c55e;
+    font-family: 'Courier New', monospace;
+    font-size: 0.5rem;
+    animation: dataflow 10s linear infinite;
+    white-space: nowrap;
+}
+
+@keyframes dataflow {
+    0% { transform: translateY(-100vh); }
+    100% { transform: translateY(100vh); }
+}
+
+/* Custom Scrollbar */
+.custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #22c55e #1a1a1a;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: #1a1a1a;
+    border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #22c55e;
+    border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #16a34a;
+}
+
+/* Weapon Selection Enhanced */
+.weapon-slot.selected {
+    border-color: #3b82f6;
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.8);
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(34, 197, 94, 0.1));
+}
+
+/* Globe Animation */
+.globe-animation {
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Grid Lines Animation */
+.grid-lines-vertical::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, #22c55e, transparent);
+    animation: gridPulse 2s ease-in-out infinite;
+}
+
+.grid-lines-vertical::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #22c55e, transparent);
+    animation: gridPulse 2s ease-in-out infinite reverse;
+}
+
+@keyframes gridPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
+/* Glass Card Effect */
+.glass-card {
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .weapon-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.5rem;
+        padding: 1rem;
+    }
+
+    .war-table {
+        padding: 1rem;
+        margin: 1rem 0;
+    }
+
+    .quantum-button {
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+    }
+}
+
+/* Glow Effects */
+.glow-text {
+    text-shadow:
+    0 0 5px currentColor,
+    0 0 10px currentColor,
+    0 0 15px currentColor;
+}
+
+.glow-border {
+    box-shadow:
+    0 0 10px rgba(34, 197, 94, 0.3),
+    inset 0 0 10px rgba(34, 197, 94, 0.1);
+}
+
+/* Loading Animation */
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(34, 197, 94, 0.3);
+    border-top: 3px solid #22c55e;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
