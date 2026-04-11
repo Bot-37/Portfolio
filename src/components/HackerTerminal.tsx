@@ -115,7 +115,7 @@ const HackerTerminal = () => {
   };
 
   return (
-    <section className="min-h-screen py-20 relative z-10 flex items-center">
+    <section className="relative z-10 flex items-center py-8 sm:py-12">
       <div className="max-w-6xl mx-auto px-6 w-full">
         <motion.div
           className="text-center mb-16"

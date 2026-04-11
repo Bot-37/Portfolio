@@ -37,7 +37,7 @@ const TerminalLogin = ({ onLogin }: TerminalLoginProps) => {
   };
 
   return (
-    <div className="min-h-screen bg-black flex items-center justify-center p-4">
+    <div className="app-shell flex min-h-screen items-center justify-center p-4">
       <div className="data-stream"></div>
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}

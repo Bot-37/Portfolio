@@ -2,6 +2,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import { Send, Mail, Phone, MapPin, Satellite } from 'lucide-react';
+import HoloGlobe from './HoloGlobe';
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -57,74 +58,13 @@ const ContactSection = () => {
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
     {/* Holographic Globe */}
     <motion.div
-    className="relative flex justify-center items-center"
+    className="relative flex items-center justify-center"
     initial={{ opacity: 0, scale: 0.8 }}
     whileInView={{ opacity: 1, scale: 1 }}
     viewport={{ once: true }}
     transition={{ delay: 0.3 }}
     >
-    <div className="relative w-96 h-96">
-    {/* Globe Base */}
-    <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-500/20 to-green-400/20 backdrop-blur-lg border-2 border-green-400/50 globe-animation">
-    {/* Grid Lines */}
-    <div className="absolute inset-4 rounded-full border-2 border-green-400/30 grid-lines-vertical"></div>
-    <div className="absolute inset-8 rounded-full border border-green-400/20"></div>
-    <div className="absolute inset-12 rounded-full border border-blue-400/20"></div>
-
-    {/* Floating Data Points */}
-    {[...Array(12)].map((_, i) => (
-      <motion.div
-      key={i}
-      className="absolute w-2 h-2 bg-green-400 rounded-full"
-      style={{
-        left: `${20 + (i % 4) * 20}%`,
-                                   top: `${20 + Math.floor(i / 4) * 20}%`,
-      }}
-      animate={{
-        scale: [1, 1.5, 1],
-        opacity: [0.5, 1, 0.5],
-      }}
-      transition={{
-        duration: 2,
-        repeat: Infinity,
-        delay: i * 0.2,
-      }}
-      />
-    ))}
-    </div>
-
-    {/* Orbital Rings */}
-    <motion.div
-    className="absolute inset-[-20px] border border-blue-400/30 rounded-full"
-    animate={{ rotate: 360 }}
-    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-    />
-    <motion.div
-    className="absolute inset-[-40px] border border-green-400/20 rounded-full"
-    animate={{ rotate: -360 }}
-    transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-    />
-
-    {/* Signal Waves */}
-    {isTransmitting && (
-      <div className="absolute inset-0">
-      {[...Array(5)].map((_, i) => (
-        <motion.div
-        key={i}
-        className="absolute inset-0 border-2 border-green-400 rounded-full"
-        initial={{ scale: 0, opacity: 1 }}
-        animate={{ scale: 3, opacity: 0 }}
-        transition={{
-          duration: 2,
-          repeat: Infinity,
-          delay: i * 0.4,
-          ease: "easeOut"
-        }}
-        />
-      ))}
-      </div>
-    )}
-    </div>
+    <HoloGlobe />
     </motion.div>
 
     {/* Contact Form */}
@@ -151,7 +91,7 @@ const ContactSection = () => {
     name="name"
     value={formData.name}
     onChange={handleInputChange}
-    className="w-full bg-black/40 border border-blue-400/30 rounded-lg px-4 py-3 text-white font-mono focus:border-green-400 focus:outline-none transition-all duration-300"
+    className="theme-input-shell w-full rounded-lg px-4 py-3 font-mono transition-all duration-300 focus:outline-none"
     placeholder="Enter designation..."
     required
     />
@@ -177,7 +117,7 @@ const ContactSection = () => {
     name="email"
     value={formData.email}
     onChange={handleInputChange}
-    className="w-full bg-black/40 border border-blue-400/30 rounded-lg px-4 py-3 text-white font-mono focus:border-green-400 focus:outline-none transition-all duration-300"
+    className="theme-input-shell w-full rounded-lg px-4 py-3 font-mono transition-all duration-300 focus:outline-none"
     placeholder="quantum.entanglement@galaxy.net"
     required
     />
@@ -203,7 +143,7 @@ const ContactSection = () => {
     value={formData.message}
     onChange={handleInputChange}
     rows={6}
-    className="w-full bg-black/40 border border-blue-400/30 rounded-lg px-4 py-3 text-white font-mono focus:border-green-400 focus:outline-none transition-all duration-300 resize-none"
+    className="theme-input-shell w-full resize-none rounded-lg px-4 py-3 font-mono transition-all duration-300 focus:outline-none"
     placeholder="Transmitting across the digital void..."
     required
     />
@@ -220,7 +160,7 @@ const ContactSection = () => {
     <motion.button
     type="submit"
     disabled={isTransmitting || transmissionComplete}
-    className="w-full relative overflow-hidden bg-gradient-to-r from-green-400/20 to-blue-400/20 border border-green-400/50 rounded-lg px-6 py-4 font-mono text-green-400 hover:text-white transition-all duration-300 group"
+    className="theme-solid-button group relative w-full overflow-hidden rounded-lg px-6 py-4 font-mono transition-all duration-300"
     whileHover={{ scale: 1.02 }}
     whileTap={{ scale: 0.98 }}
     >

@@ -15,10 +15,10 @@ const TypingEffect = ({ text, className = '', delay = 0 }: TypingEffectProps) =>
     useEffect(() => {
         const startTimer = setTimeout(() => {
             if (currentIndex < text.length) {
-                // AI-like typing speed - faster and more consistent (8-15ms)
-                const baseSpeed = 10;
-                const variability = Math.random() * 8 - 4; // ±4ms variation
-                const typingSpeed = Math.max(6, baseSpeed + variability);
+                // AI-like typing speed - faster and more consistent
+                const baseSpeed = 5;
+                const variability = Math.random() * 4 - 2; // ±2ms variation
+                const typingSpeed = Math.max(2, baseSpeed + variability);
 
                 // Slight pause after punctuation for natural rhythm
                 const currentChar = text[currentIndex];
@@ -46,10 +46,10 @@ const TypingEffect = ({ text, className = '', delay = 0 }: TypingEffectProps) =>
 
     return (
         <motion.div className={className}>
-        {displayedText}
-        {showCursor && currentIndex <= text.length && (
-            <span className="text-green-400">▋</span>
-        )}
+            {displayedText}
+            {showCursor && currentIndex <= text.length && (
+                <span className="text-green-400">▋</span>
+            )}
         </motion.div>
     );
 };

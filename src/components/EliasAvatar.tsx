@@ -2,12 +2,17 @@ import { motion } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
 import Spline from '@splinetool/react-spline';
 
-const EliasAvatar = () => {
+interface EliasAvatarProps {
+    className?: string;
+    style?: React.CSSProperties;
+}
+
+const EliasAvatar = (props: EliasAvatarProps) => {
     const [isActive, setIsActive] = useState(false);
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const [splineLoaded, setSplineLoaded] = useState(false);
     const [pulseIntensity, setPulseIntensity] = useState(0.3);
-    const splineRef = useRef<any>(null);
+    const splineRef = useRef<unknown>(null);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -34,10 +39,10 @@ const EliasAvatar = () => {
         setMousePosition({ x: 0, y: 0 });
     };
 
-    const onSplineLoad = (spline: any) => {
+    const onSplineLoad = (spline: unknown) => {
         splineRef.current = spline;
         setSplineLoaded(true);
-        
+
         // Hide Spline watermark by finding and hiding the logo element
         setTimeout(() => {
             const splineCanvas = document.querySelector('#spline-watermark, [id*="spline"], .spline-watermark');
@@ -64,11 +69,11 @@ const EliasAvatar = () => {
     };
 
     return (
-        <div 
-            className="relative pointer-events-none"
+        <div
+            className={`relative pointer-events-none ${props.className || ''}`}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
-            style={{ width: '500px', height: '500px' }}
+            style={props.style || { width: '500px', height: '500px' }}
         >
             {/* Enhanced Outer Holographic Rings with Dynamic Colors */}
             <motion.div
@@ -184,12 +189,12 @@ const EliasAvatar = () => {
                 {!splineLoaded && (
                     <motion.div
                         className="absolute inset-0 flex items-center justify-center"
-                        animate={{ 
+                        animate={{
                             opacity: [0.3, 1, 0.3],
                             scale: [0.9, 1, 0.9]
                         }}
-                        transition={{ 
-                            duration: 2, 
+                        transition={{
+                            duration: 2,
                             repeat: Infinity,
                             ease: "easeInOut"
                         }}
@@ -215,11 +220,10 @@ const EliasAvatar = () => {
                         style={{
                             width: `${120 + i * 40}px`,
                             height: `${120 + i * 40}px`,
-                            background: `radial-gradient(circle, ${
-                                i === 0 ? 'rgba(34, 197, 94, 0.15)' :
+                            background: `radial-gradient(circle, ${i === 0 ? 'rgba(34, 197, 94, 0.15)' :
                                 i === 1 ? 'rgba(59, 130, 246, 0.12)' :
-                                'rgba(168, 85, 247, 0.1)'
-                            } 0%, transparent 70%)`
+                                    'rgba(168, 85, 247, 0.1)'
+                                } 0%, transparent 70%)`
                         }}
                         animate={{
                             scale: [1, 1.3, 1],
@@ -313,15 +317,15 @@ const EliasAvatar = () => {
                 >
                     ELIAS AI ASSISTANT
                 </motion.div>
-                
+
                 <motion.div
                     className="text-blue-300 text-sm flex items-center justify-center gap-3 mb-1"
                     animate={{ opacity: [0.6, 1, 0.6] }}
                     transition={{ duration: 2.5, repeat: Infinity }}
                 >
-                    <motion.div 
+                    <motion.div
                         className="w-2 h-2 bg-green-400 rounded-full"
-                        animate={{ 
+                        animate={{
                             scale: [1, 1.5, 1],
                             boxShadow: [
                                 "0 0 5px rgba(34, 197, 94, 0.5)",
@@ -333,8 +337,8 @@ const EliasAvatar = () => {
                     />
                     NEURAL LINK ESTABLISHED
                 </motion.div>
-                
-                <motion.div 
+
+                <motion.div
                     className="text-gray-400 text-xs"
                     animate={{ opacity: [0.5, 0.8, 0.5] }}
                     transition={{ duration: 3, repeat: Infinity }}

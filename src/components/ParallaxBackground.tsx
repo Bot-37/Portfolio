@@ -15,61 +15,108 @@ const ParallaxBackground = () => {
     }, []);
 
     return (
-        <div className="fixed inset-0 pointer-events-none">
-        {/* Hex Grid Background */}
-        <div className="absolute inset-0 opacity-10">
-        <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-        <pattern id="hexGrid" width="60" height="52" patternUnits="userSpaceOnUse">
-        <path d="M0 26L15 0h30l15 26l-15 26H15z" fill="none" stroke="currentColor" strokeWidth="1" className="text-green-400"/>
-        </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#hexGrid)" />
-        </svg>
-        </div>
+        <div className="fixed inset-0 pointer-events-none overflow-hidden">
+            {/* Hex Grid Background - Deepest Layer */}
+            <div className="absolute inset-0 opacity-10" style={{ transform: `translate(${mousePosition.x * -0.01}px, ${mousePosition.y * -0.01}px)` }}>
+                <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <pattern id="hexGrid" width="60" height="52" patternUnits="userSpaceOnUse">
+                            <path d="M0 26L15 0h30l15 26l-15 26H15z" fill="none" stroke="currentColor" strokeWidth="1" className="theme-grid-stroke" />
+                        </pattern>
+                    </defs>
+                    <rect width="100%" height="100%" fill="url(#hexGrid)" />
+                </svg>
+            </div>
 
-        {/* Matrix Particles */}
-        <motion.div
-        className="absolute inset-0"
-        animate={{
-            x: mousePosition.x * -0.02,
-            y: mousePosition.y * -0.02,
-        }}
-        transition={{ type: "spring", stiffness: 50, damping: 20 }}
-        >
-        {[...Array(20)].map((_, i) => (
+            {/* Distant Stars - Slow movement */}
             <motion.div
-            key={i}
-            className="absolute w-1 h-1 bg-blue-400 rounded-full"
-            style={{
-                left: `${Math.random() * 100}%`,
-                                       top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-                opacity: [0.2, 1, 0.2],
-                scale: [1, 1.5, 1],
-            }}
-            transition={{
-                duration: 3 + Math.random() * 2,
-                                       repeat: Infinity,
-                                       delay: Math.random() * 2,
-            }}
+                className="absolute inset-0"
+                animate={{
+                    x: mousePosition.x * -0.02,
+                    y: mousePosition.y * -0.02,
+                }}
+                transition={{ type: "spring", stiffness: 20, damping: 30 }}
+            >
+                {[...Array(50)].map((_, i) => (
+                    <div
+                        key={`star-${i}`}
+                        className="theme-bg-star absolute h-0.5 w-0.5 rounded-full opacity-40"
+                        style={{
+                            left: `${Math.random() * 100}%`,
+                            top: `${Math.random() * 100}%`,
+                        }}
+                    />
+                ))}
+            </motion.div>
+
+            {/* Mid-layer Particles - Medium movement */}
+            <motion.div
+                className="absolute inset-0"
+                animate={{
+                    x: mousePosition.x * -0.05,
+                    y: mousePosition.y * -0.05,
+                }}
+                transition={{ type: "spring", stiffness: 25, damping: 25 }}
+            >
+                {[...Array(30)].map((_, i) => (
+                    <motion.div
+                        key={`mid-${i}`}
+                        className="theme-bg-secondary-particle absolute h-1 w-1 rounded-full opacity-30"
+                        style={{
+                            left: `${Math.random() * 100}%`,
+                            top: `${Math.random() * 100}%`,
+                        }}
+                        animate={{
+                            opacity: [0.1, 0.5, 0.1],
+                            scale: [1, 1.2, 1],
+                        }}
+                        transition={{
+                            duration: 4 + Math.random() * 3,
+                            repeat: Infinity,
+                            delay: Math.random() * 2,
+                        }}
+                    />
+                ))}
+            </motion.div>
+
+            {/* Foreground Particles - Fast movement */}
+            <motion.div
+                className="absolute inset-0"
+                animate={{
+                    x: mousePosition.x * -0.08,
+                    y: mousePosition.y * -0.08,
+                }}
+                transition={{ type: "spring", stiffness: 30, damping: 20 }}
+            >
+                {[...Array(15)].map((_, i) => (
+                    <motion.div
+                        key={`fore-${i}`}
+                        className="theme-bg-primary-particle absolute h-1.5 w-1.5 rounded-full opacity-20"
+                        style={{
+                            left: `${Math.random() * 100}%`,
+                            top: `${Math.random() * 100}%`,
+                        }}
+                        animate={{
+                            opacity: [0.2, 0.8, 0.2],
+                            scale: [1, 1.5, 1],
+                        }}
+                        transition={{
+                            duration: 2 + Math.random() * 2,
+                            repeat: Infinity,
+                            delay: Math.random() * 2,
+                        }}
+                    />
+                ))}
+            </motion.div>
+
+            {/* Scanning Lines overlay */}
+            <motion.div
+                className="theme-scan-line absolute top-0 left-0 h-0.5 w-full"
+                animate={{ y: ["0vh", "100vh"] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
             />
-        ))}
-        </motion.div>
 
-        {/* Scanning Lines */}
-        <motion.div
-        className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-green-400 to-transparent"
-        animate={{ y: ["0vh", "100vh"] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-        />
-
-        <motion.div
-        className="absolute top-0 left-0 w-0.5 h-full bg-gradient-to-b from-transparent via-blue-400 to-transparent"
-        animate={{ x: ["0vw", "100vw"] }}
-        transition={{ duration: 12, repeat: Infinity, ease: "linear", delay: 2 }}
-        />
+            <div className="theme-vignette absolute inset-0 pointer-events-none opacity-60" />
         </div>
     );
 };

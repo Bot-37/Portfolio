@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import BootSequence from '../components/BootSequence';
 import TerminalLogin from '../components/TerminalLogin';
 import LandingPage from '../components/LandingPage';
+import ThemeToggle from '../components/ThemeToggle';
 
 const Index = () => {
   const [isBooting, setIsBooting] = useState(true);
@@ -24,16 +25,22 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black overflow-hidden">
-    <AnimatePresence mode="wait">
-    {isBooting ? (
-      <BootSequence key="boot" onComplete={() => setIsBooting(false)} />
-    ) : !isLoggedIn ? (
-      <TerminalLogin key="login" onLogin={handleLogin} />
-    ) : (
-      <LandingPage key="main" callSign={callSign} />
-    )}
-    </AnimatePresence>
+    <div className="min-h-screen app-shell overflow-hidden">
+      {(isBooting || !isLoggedIn) && (
+        <div className="fixed right-4 top-4 z-[60]">
+          <ThemeToggle compact />
+        </div>
+      )}
+
+      <AnimatePresence mode="wait">
+        {isBooting ? (
+          <BootSequence key="boot" onComplete={() => setIsBooting(false)} />
+        ) : !isLoggedIn ? (
+          <TerminalLogin key="login" onLogin={handleLogin} />
+        ) : (
+          <LandingPage key="main" callSign={callSign} />
+        )}
+      </AnimatePresence>
     </div>
   );
 };

@@ -1,7 +1,7 @@
-
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { Python, Java, ReactIcon, Cpp, Linux, Docker, JavaScript, MySQL, Git, AWS, HTML, CSS, GitHub, C } from './TechIcons';
 
 const TechArsenal = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -10,7 +10,7 @@ const TechArsenal = () => {
   const techStack = [
     {
       name: "Python",
-      icon: "🐍",
+      icon: <Python className="w-[1em] h-[1em]" />,
       category: "Primary Weapon",
       power: 95,
       ammo: "∞",
@@ -40,7 +40,7 @@ const TechArsenal = () => {
     },
     {
       name: "Java",
-      icon: "☕",
+      icon: <Java className="w-[1em] h-[1em]" />,
       category: "Heavy Assault",
       power: 90,
       ammo: "∞",
@@ -70,7 +70,7 @@ const TechArsenal = () => {
     },
     {
       name: "React",
-      icon: "⚛️",
+      icon: <ReactIcon className="w-[1em] h-[1em]" />,
       category: "Tactical Interface",
       power: 92,
       ammo: "∞",
@@ -100,7 +100,7 @@ const TechArsenal = () => {
     },
     {
       name: "C++",
-      icon: "🔧",
+      icon: <Cpp className="w-[1em] h-[1em]" />,
       category: "Precision Rifle",
       power: 88,
       ammo: "∞",
@@ -130,7 +130,7 @@ const TechArsenal = () => {
     },
     {
       name: "Linux",
-      icon: "🐧",
+      icon: <Linux className="w-[1em] h-[1em]" />,
       category: "Command Center",
       power: 95,
       ammo: "∞",
@@ -160,7 +160,7 @@ const TechArsenal = () => {
     },
     {
       name: "Docker",
-      icon: "🐳",
+      icon: <Docker className="w-[1em] h-[1em]" />,
       category: "Deployment Pod",
       power: 85,
       ammo: "∞",
@@ -190,7 +190,7 @@ const TechArsenal = () => {
     },
     {
       name: "JavaScript",
-      icon: "🟨",
+      icon: <JavaScript className="w-[1em] h-[1em]" />,
       category: "Versatile SMG",
       power: 87,
       ammo: "∞",
@@ -220,7 +220,7 @@ const TechArsenal = () => {
     },
     {
       name: "MySQL",
-      icon: "🗄️",
+      icon: <MySQL className="w-[1em] h-[1em]" />,
       category: "Data Arsenal",
       power: 83,
       ammo: "∞",
@@ -250,7 +250,7 @@ const TechArsenal = () => {
     },
     {
       name: "Git",
-      icon: "🌿",
+      icon: <Git className="w-[1em] h-[1em]" />,
       category: "Version Control",
       power: 90,
       ammo: "∞",
@@ -280,7 +280,7 @@ const TechArsenal = () => {
     },
     {
       name: "AWS",
-      icon: "☁️",
+      icon: <AWS className="w-[1em] h-[1em]" />,
       category: "Cloud Artillery",
       power: 86,
       ammo: "∞",
@@ -310,7 +310,7 @@ const TechArsenal = () => {
     },
     {
       name: "HTML",
-      icon: "📄",
+      icon: <HTML className="w-[1em] h-[1em]" />,
       category: "Foundation Framework",
       power: 80,
       ammo: "∞",
@@ -340,7 +340,7 @@ const TechArsenal = () => {
     },
     {
       name: "CSS",
-      icon: "🎨",
+      icon: <CSS className="w-[1em] h-[1em]" />,
       category: "Style Warfare",
       power: 84,
       ammo: "∞",
@@ -370,7 +370,7 @@ const TechArsenal = () => {
     },
     {
       name: "GitHub",
-      icon: "🐙",
+      icon: <GitHub className="w-[1em] h-[1em]" />,
       category: "Collaboration Hub",
       power: 88,
       ammo: "∞",
@@ -400,7 +400,7 @@ const TechArsenal = () => {
     },
     {
       name: "C",
-      icon: "⚙️",
+      icon: <C className="w-[1em] h-[1em]" />,
       category: "System Core",
       power: 85,
       ammo: "∞",
@@ -448,177 +448,176 @@ const TechArsenal = () => {
 
   return (
     <section className="min-h-screen py-20 relative z-10">
-    <div className="max-w-7xl mx-auto px-6">
-    <motion.div
-    className="text-center mb-16"
-    initial={{ opacity: 0, y: -30 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    >
-    <h2 className="text-4xl font-mono text-green-400 glow-text mb-4">
-    WEAPON CUSTOMIZATION
-    </h2>
-    <div className="text-center">
-    <div className="inline-block holographic-display p-4">
-    <p className="text-green-400 font-mono text-sm">
-    [ARMORY] Select weapon for modification. Max Level {Math.max(...techStack.map(t => t.power))}
-    </p>
-    </div>
-    </div>
-    </motion.div>
+      <div className="max-w-7xl mx-auto px-6">
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="text-4xl font-mono text-green-400 glow-text mb-4">
+            WEAPON CUSTOMIZATION
+          </h2>
+          <div className="text-center">
+            <div className="inline-block holographic-display p-4">
+              <p className="text-green-400 font-mono text-sm">
+                [ARMORY] Select weapon for modification. Max Level {Math.max(...techStack.map(t => t.power))}
+              </p>
+            </div>
+          </div>
+        </motion.div>
 
-    <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-    {/* Weapon Selection */}
-    <div className="lg:col-span-1">
-    <div className="war-table">
-    <div className="war-table-content">
-    <h3 className="text-xl font-mono text-blue-400 mb-6 glow-text">Arsenal</h3>
-    <div className="space-y-2 max-h-96 overflow-y-auto custom-scrollbar">
-    {techStack.map((tech, index) => (
-      <motion.div
-      key={tech.name}
-      className={`weapon-slot cursor-pointer p-3 rounded ${selectedIndex === index ? 'selected bg-blue-400/20' : 'bg-gray-800/50'} border border-green-400/30 hover:border-green-400`}
-      onClick={() => setSelectedIndex(index)}
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
-      >
-      <div className="flex items-center gap-3">
-      <div className="text-2xl">{tech.icon}</div>
-      <div className="flex-1">
-      <div className="text-green-400 font-mono text-sm font-bold">{tech.name}</div>
-      <div className="text-blue-300 text-xs">{tech.category}</div>
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+          {/* Weapon Selection */}
+          <div className="lg:col-span-1">
+            <div className="war-table">
+              <div className="war-table-content">
+                <h3 className="text-xl font-mono text-blue-400 mb-6 glow-text">Arsenal</h3>
+                <div className="space-y-2 max-h-96 overflow-y-auto custom-scrollbar">
+                  {techStack.map((tech, index) => (
+                    <motion.div
+                      key={tech.name}
+                      className={`weapon-slot cursor-pointer p-3 rounded ${selectedIndex === index ? 'selected bg-blue-400/20' : 'bg-gray-800/50'} border border-green-400/30 hover:border-green-400`}
+                      onClick={() => setSelectedIndex(index)}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="text-2xl">{tech.icon}</div>
+                        <div className="flex-1">
+                          <div className="text-green-400 font-mono text-sm font-bold">{tech.name}</div>
+                          <div className="text-blue-300 text-xs">{tech.category}</div>
+                        </div>
+                        <div className="text-yellow-400 text-xs font-mono">LV.{tech.power}</div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+
+                <div className="flex justify-between items-center mt-6">
+                  <button onClick={prevWeapon} className="quantum-button p-2">
+                    <ChevronLeft className="w-5 h-5" />
+                  </button>
+                  <span className="text-green-400 font-mono text-sm">
+                    {selectedIndex + 1} / {techStack.length}
+                  </span>
+                  <button onClick={nextWeapon} className="quantum-button p-2">
+                    <ChevronRight className="w-5 h-5" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Main Weapon Display */}
+          <div className="lg:col-span-3">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={selectedTech.name}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.3 }}
+                className="theme-panel-strong rounded-lg p-6"
+              >
+                {/* Header */}
+                <div className="flex justify-between items-start mb-6">
+                  <div className="flex items-center gap-4">
+                    <div className="text-6xl">{selectedTech.icon}</div>
+                    <div>
+                      <h3 className="text-3xl font-mono text-green-400 glow-text">{selectedTech.name}</h3>
+                      <p className="text-blue-400 text-sm font-mono">{selectedTech.category}</p>
+                      <div className={`inline-block px-2 py-1 rounded text-xs font-mono mt-1 ${selectedTech.rarity === 'Legendary' ? 'bg-yellow-400/20 text-yellow-400' :
+                          selectedTech.rarity === 'Epic' ? 'bg-purple-400/20 text-purple-400' :
+                            selectedTech.rarity === 'Rare' ? 'bg-blue-400/20 text-blue-400' : 'bg-gray-400/20 text-gray-400'
+                        }`}>
+                        {selectedTech.rarity}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-yellow-400 font-mono text-sm">Weapon Max Level {selectedTech.power}</div>
+                    <div className="text-green-400 font-mono text-xs">Equipped 10/10</div>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  {/* Attachments */}
+                  <div>
+                    <h4 className="text-lg font-mono text-blue-400 mb-4 glow-text">ATTACHMENTS</h4>
+                    <div className="grid grid-cols-2 gap-3">
+                      {Object.entries(selectedTech.attachments).map(([type, attachment], index) => (
+                        <motion.div
+                          key={type}
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: index * 0.05 }}
+                          className="theme-panel-muted rounded p-2"
+                        >
+                          <div className="text-green-400 text-xs font-mono uppercase">{type}</div>
+                          <div className="text-white text-xs">{attachment}</div>
+                          <div className="w-3 h-3 bg-yellow-400 rounded-full mt-1"></div>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Stats */}
+                  <div>
+                    <h4 className="text-lg font-mono text-blue-400 mb-4 glow-text">WEAPON STATS</h4>
+                    <div className="space-y-3">
+                      {Object.entries(selectedTech.stats).map(([stat, value]) => (
+                        <div key={stat} className="flex items-center justify-between">
+                          <span className="text-gray-300 text-sm font-mono capitalize">{stat}</span>
+                          <div className="flex items-center gap-2 flex-1 mx-4">
+                            <div className="flex-1 bg-gray-700 h-2 rounded-full overflow-hidden">
+                              <motion.div
+                                className={`h-full ${value >= 90 ? 'bg-green-400' : value >= 75 ? 'bg-yellow-400' : 'bg-red-400'}`}
+                                initial={{ width: 0 }}
+                                animate={{ width: `${value}%` }}
+                                transition={{ duration: 0.8, delay: 0.2 }}
+                              />
+                            </div>
+                            <span className={`text-sm font-mono min-w-[3rem] ${getStatColor(value)}`}>
+                              {value}
+                            </span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Projects */}
+                    <div className="mt-6">
+                      <h5 className="text-blue-400 font-mono text-sm mb-3">Combat Deployments</h5>
+                      <div className="space-y-2">
+                        {selectedTech.projects.map((project, idx) => (
+                          <div key={idx} className="flex items-center gap-2 text-xs">
+                            <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                            <span className="text-gray-300">{project}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Save Custom Mod */}
+                <div className="mt-6 pt-4 border-t border-green-400/20">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="text-green-400 font-mono text-sm">💾 Save a Custom Mod</div>
+                      <div className="text-gray-400 text-xs">Used Custom Modification Slots: 0/5</div>
+                    </div>
+                    <button className="quantum-button">
+                      Save Configuration
+                    </button>
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </div>
       </div>
-      <div className="text-yellow-400 text-xs font-mono">LV.{tech.power}</div>
-      </div>
-      </motion.div>
-    ))}
-    </div>
-
-    <div className="flex justify-between items-center mt-6">
-    <button onClick={prevWeapon} className="quantum-button p-2">
-    <ChevronLeft className="w-5 h-5" />
-    </button>
-    <span className="text-green-400 font-mono text-sm">
-    {selectedIndex + 1} / {techStack.length}
-    </span>
-    <button onClick={nextWeapon} className="quantum-button p-2">
-    <ChevronRight className="w-5 h-5" />
-    </button>
-    </div>
-    </div>
-    </div>
-    </div>
-
-    {/* Main Weapon Display */}
-    <div className="lg:col-span-3">
-    <AnimatePresence mode="wait">
-    <motion.div
-    key={selectedTech.name}
-    initial={{ opacity: 0, scale: 0.9 }}
-    animate={{ opacity: 1, scale: 1 }}
-    exit={{ opacity: 0, scale: 0.9 }}
-    transition={{ duration: 0.3 }}
-    className="bg-black/80 border border-green-400/30 rounded-lg p-6 backdrop-blur-sm"
-    >
-    {/* Header */}
-    <div className="flex justify-between items-start mb-6">
-    <div className="flex items-center gap-4">
-    <div className="text-6xl">{selectedTech.icon}</div>
-    <div>
-    <h3 className="text-3xl font-mono text-green-400 glow-text">{selectedTech.name}</h3>
-    <p className="text-blue-400 text-sm font-mono">{selectedTech.category}</p>
-    <div className={`inline-block px-2 py-1 rounded text-xs font-mono mt-1 ${
-      selectedTech.rarity === 'Legendary' ? 'bg-yellow-400/20 text-yellow-400' :
-      selectedTech.rarity === 'Epic' ? 'bg-purple-400/20 text-purple-400' :
-      selectedTech.rarity === 'Rare' ? 'bg-blue-400/20 text-blue-400' : 'bg-gray-400/20 text-gray-400'
-    }`}>
-    {selectedTech.rarity}
-    </div>
-    </div>
-    </div>
-    <div className="text-right">
-    <div className="text-yellow-400 font-mono text-sm">Weapon Max Level {selectedTech.power}</div>
-    <div className="text-green-400 font-mono text-xs">Equipped 10/10</div>
-    </div>
-    </div>
-
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-    {/* Attachments */}
-    <div>
-    <h4 className="text-lg font-mono text-blue-400 mb-4 glow-text">ATTACHMENTS</h4>
-    <div className="grid grid-cols-2 gap-3">
-    {Object.entries(selectedTech.attachments).map(([type, attachment], index) => (
-      <motion.div
-      key={type}
-      initial={{ opacity: 0, x: -20 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ delay: index * 0.05 }}
-      className="bg-gray-800/50 border border-green-400/30 rounded p-2"
-      >
-      <div className="text-green-400 text-xs font-mono uppercase">{type}</div>
-      <div className="text-white text-xs">{attachment}</div>
-      <div className="w-3 h-3 bg-yellow-400 rounded-full mt-1"></div>
-      </motion.div>
-    ))}
-    </div>
-    </div>
-
-    {/* Stats */}
-    <div>
-    <h4 className="text-lg font-mono text-blue-400 mb-4 glow-text">WEAPON STATS</h4>
-    <div className="space-y-3">
-    {Object.entries(selectedTech.stats).map(([stat, value]) => (
-      <div key={stat} className="flex items-center justify-between">
-      <span className="text-gray-300 text-sm font-mono capitalize">{stat}</span>
-      <div className="flex items-center gap-2 flex-1 mx-4">
-      <div className="flex-1 bg-gray-700 h-2 rounded-full overflow-hidden">
-      <motion.div
-      className={`h-full ${value >= 90 ? 'bg-green-400' : value >= 75 ? 'bg-yellow-400' : 'bg-red-400'}`}
-      initial={{ width: 0 }}
-      animate={{ width: `${value}%` }}
-      transition={{ duration: 0.8, delay: 0.2 }}
-      />
-      </div>
-      <span className={`text-sm font-mono min-w-[3rem] ${getStatColor(value)}`}>
-      {value}
-      </span>
-      </div>
-      </div>
-    ))}
-    </div>
-
-    {/* Projects */}
-    <div className="mt-6">
-    <h5 className="text-blue-400 font-mono text-sm mb-3">Combat Deployments</h5>
-    <div className="space-y-2">
-    {selectedTech.projects.map((project, idx) => (
-      <div key={idx} className="flex items-center gap-2 text-xs">
-      <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-      <span className="text-gray-300">{project}</span>
-      </div>
-    ))}
-    </div>
-    </div>
-    </div>
-    </div>
-
-    {/* Save Custom Mod */}
-    <div className="mt-6 pt-4 border-t border-green-400/20">
-    <div className="flex items-center justify-between">
-    <div>
-    <div className="text-green-400 font-mono text-sm">💾 Save a Custom Mod</div>
-    <div className="text-gray-400 text-xs">Used Custom Modification Slots: 0/5</div>
-    </div>
-    <button className="quantum-button">
-    Save Configuration
-    </button>
-    </div>
-    </div>
-    </motion.div>
-    </AnimatePresence>
-    </div>
-    </div>
-    </div>
     </section>
   );
 };
