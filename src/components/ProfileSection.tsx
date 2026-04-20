@@ -1,11 +1,10 @@
 
 import { motion } from 'framer-motion';
-import { MapPin, Mail, Phone, Calendar, ExternalLink, Download, CheckCircle, Linkedin, Github } from 'lucide-react';
+import { MapPin, Mail, Calendar, ExternalLink, Download, CheckCircle, Linkedin, Github } from 'lucide-react';
 
 const ProfileSection = () => {
     const contactInfo = [
         { icon: Mail, label: 'Email', value: 'fahadfaz0708@gmail.com', href: 'mailto:fahadfaz0708@gmail.com' },
-        { icon: Phone, label: 'Phone', value: '+91 848-994-1091', href: 'tel:+918489941091' },
         { icon: Calendar, label: 'Birthday', value: 'August 07, 2005' },
         { icon: MapPin, label: 'Location', value: 'Coimbatore, Tamil Nadu, INDIA' }
     ];

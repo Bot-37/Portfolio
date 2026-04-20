@@ -70,7 +70,6 @@ const HackerTerminal = () => {
     contact: [
       'CONTACT_MATRIX:',
       '  EMAIL: fahadfaz0708@gmail.com',
-      '  PHONE: +91 8489941091',
       '  LINKEDIN: https://www.linkedin.com/in/bot37/',
       '  GITHUB: https://github.com/Bot-37',
       '  LOCATION: 10.9974° N, 76.9589° E',
