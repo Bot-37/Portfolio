@@ -3,11 +3,16 @@ import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { Terminal } from 'lucide-react';
 
-const HackerTerminal = () => {
+interface HackerTerminalProps {
+  callSign?: string;
+}
+
+const HackerTerminal = ({ callSign = '' }: HackerTerminalProps) => {
+  const isOwner = callSign.trim().toLowerCase() === 'bot-37';
   const [currentCommand, setCurrentCommand] = useState('');
   const [terminalOutput, setTerminalOutput] = useState<string[]>([
     '> Initializing neural link...',
-    '> Establishing secure connection to FAHAD_37...',
+    `> Establishing secure connection to ${isOwner ? 'BOT-37_OWNER' : 'FAHAD_37'}...`,
     '> Access granted. Welcome to the mainframe.',
     '> Type "help" for available commands.',
     ''
@@ -27,10 +32,10 @@ const HackerTerminal = () => {
       ''
     ],
     whoami: [
-      'USER: FAHAD_37',
-      'DESIGNATION: Neural Network Architect',
-      'CLEARANCE: MAXIMUM',
-      'STATUS: ONLINE',
+      `USER: ${isOwner ? 'BOT-37' : 'FAHAD_37'}`,
+      `DESIGNATION: ${isOwner ? 'Portfolio Owner / Neural Network Architect' : 'Neural Network Architect'}`,
+      `CLEARANCE: ${isOwner ? 'OWNER' : 'MAXIMUM'}`,
+      `STATUS: ${isOwner ? 'OWNER_SESSION_ACTIVE' : 'ONLINE'}`,
       'LOCATION: Coimbatore, Tamil Nadu, INDIA',
       ''
     ],

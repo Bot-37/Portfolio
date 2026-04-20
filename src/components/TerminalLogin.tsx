@@ -17,21 +17,39 @@ const TerminalLogin = ({ onLogin }: TerminalLoginProps) => {
   ]);
   const [isTyping, setIsTyping] = useState(false);
 
+  const getAccessProfile = (rawCallSign: string) => {
+    const normalized = rawCallSign.trim();
+    const isOwner = normalized.toLowerCase() === 'bot-37';
+
+    return {
+      callSign: isOwner ? 'Bot-37' : normalized,
+      lines: isOwner
+        ? [
+            '> Bot-37',
+            'Authenticating...',
+            'Owner signature verified.',
+            'Welcome, BOT-37. Owner access granted.',
+            'Loading command authority...'
+          ]
+        : [
+            `> ${normalized}`,
+            'Authenticating...',
+            `Welcome, ${normalized.toUpperCase()}. Access granted.`,
+            'Loading neural pathways...'
+          ]
+    };
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (input.trim()) {
-      const newHistory = [
-        ...terminalHistory,
-        `> ${input}`,
-        'Authenticating...',
-        `Welcome, ${input.toUpperCase()}. Access granted.`,
-        'Loading neural pathways...'
-      ];
+      const accessProfile = getAccessProfile(input);
+      const newHistory = [...terminalHistory, ...accessProfile.lines];
       setTerminalHistory(newHistory);
       setIsTyping(true);
 
       setTimeout(() => {
-        onLogin(input.trim());
+        onLogin(accessProfile.callSign);
       }, 2000);
     }
   };

@@ -27,6 +27,7 @@ const LandingPage = ({ callSign }: LandingPageProps) => {
     const [menuOpen, setMenuOpen] = useState(false);
     const [activeSection, setActiveSection] = useState('profile-section');
     const [scrolled, setScrolled] = useState(false);
+    const isOwner = callSign.trim().toLowerCase() === 'bot-37';
 
     const handleOpenTerminal = () => {
         setIsTerminalOpen(true);
@@ -108,6 +109,12 @@ const LandingPage = ({ callSign }: LandingPageProps) => {
 
                         {/* Terminal + Hamburger */}
                         <div className="flex items-center gap-2">
+                            {isOwner && (
+                                <div className="hidden lg:flex items-center gap-1.5 rounded border border-green-400/40 bg-green-400/10 px-2.5 py-1 font-mono text-[11px] text-green-400">
+                                    <span className="h-1.5 w-1.5 rounded-full bg-green-400 animate-pulse" />
+                                    OWNER: BOT-37
+                                </div>
+                            )}
                             <ThemeToggle compact className="hidden sm:flex" />
                             <button
                                 onClick={handleOpenTerminal}
@@ -140,6 +147,12 @@ const LandingPage = ({ callSign }: LandingPageProps) => {
                                 <div className="pb-3">
                                     <ThemeToggle className="w-full justify-center" />
                                 </div>
+                                {isOwner && (
+                                    <div className="mb-2 flex items-center justify-center gap-2 rounded border border-green-400/30 bg-green-400/10 px-3 py-2 font-mono text-xs text-green-400">
+                                        <span className="h-1.5 w-1.5 rounded-full bg-green-400 animate-pulse" />
+                                        OWNER: BOT-37
+                                    </div>
+                                )}
                                 {NAV_LINKS.map(({ id, label, icon: Icon }) => (
                                     <button
                                         key={id}
@@ -205,6 +218,7 @@ const LandingPage = ({ callSign }: LandingPageProps) => {
             <TerminalModal
                 isOpen={isTerminalOpen}
                 onClose={() => setIsTerminalOpen(false)}
+                callSign={callSign}
             />
         </div>
     );

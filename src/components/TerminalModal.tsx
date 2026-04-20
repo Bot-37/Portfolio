@@ -6,9 +6,10 @@ import HackerTerminal from './HackerTerminal';
 interface TerminalModalProps {
     isOpen: boolean;
     onClose: () => void;
+    callSign?: string;
 }
 
-const TerminalModal = ({ isOpen, onClose }: TerminalModalProps) => {
+const TerminalModal = ({ isOpen, onClose, callSign = '' }: TerminalModalProps) => {
     return (
         <AnimatePresence>
             {isOpen && (
@@ -34,6 +35,11 @@ const TerminalModal = ({ isOpen, onClose }: TerminalModalProps) => {
                                 <div className="w-3 h-3 rounded-full bg-yellow-500" />
                                 <div className="w-3 h-3 rounded-full bg-green-500" />
                                 <span className="ml-2 text-green-500 font-mono text-xs">ROOT_ACCESS_GRANTED</span>
+                                {callSign.trim().toLowerCase() === 'bot-37' && (
+                                    <span className="hidden sm:inline-flex rounded border border-green-400/30 bg-green-400/10 px-2 py-0.5 text-[10px] font-mono text-green-400">
+                                        OWNER_SESSION: BOT-37
+                                    </span>
+                                )}
                             </div>
                             <button
                                 onClick={onClose}
@@ -51,7 +57,7 @@ const TerminalModal = ({ isOpen, onClose }: TerminalModalProps) => {
                                Ideally we'd modify HackerTerminal to NOT conform to screen height if embedded. 
                                For now, let's wrap it in a div that might constrain it. */}
                             <div className="p-4">
-                                <HackerTerminal />
+                                <HackerTerminal callSign={callSign} />
                             </div>
                         </div>
                     </motion.div>
